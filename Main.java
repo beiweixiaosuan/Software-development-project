@@ -17,7 +17,7 @@ public class Main {
     static void displayEmployees() {}
 
     public static void main(String[] args) {
-        System.out.println("Employee Management System");
+        System.out.println("----- EMPLOYEE MANAGEMENT SYSTEM -----");
         while (true) {
             System.out.println("1. Add Employee");
             System.out.println("2. Update Employee");
@@ -38,21 +38,21 @@ public class Main {
                     addEmployee();
                     break;
                 case 2:
-                    System.out.println("\n--- Update Employee ---");
+                    System.out.println("\n----------- Update Employee ----------");
                     System.out.print("Enter Employee ID: ");
                     sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());
                     updateEmployee(employeeId);
                     break;
                 case 3:
-                    System.out.println("\n--- Delete Employee ---");
+                    System.out.println("\n----------- Delete Employee ----------");
                     System.out.print("Enter Employee ID: ");
                     sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());
                     deleteEmployee(employeeId);
                     break;
                 case 4:
-                    System.out.println("\n--- Update Salary ---");
+                    System.out.println("\n------------ Update Salary -----------");
                     System.out.print("Enter Employee ID: ");
                     sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());

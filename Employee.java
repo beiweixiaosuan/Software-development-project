@@ -7,10 +7,10 @@ class Employee {
     private int ssn;
     private String phone;
     private String emgName;
-    private int emgPhone;
+    private String emgPhone;
     private int salary;
 
-    Employee(int id, String name, Date dob, int ssn, String phone, String emgName, int emgPhone, int salary) {
+    Employee(int id, String name, Date dob, int ssn, String phone, String emgName, String emgPhone, int salary) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -45,7 +45,7 @@ class Employee {
         return emgName;
     }
 
-    int getEmgPhone() {
+    String getEmgPhone() {
         return emgPhone;
     }
 
@@ -77,7 +77,7 @@ class Employee {
         this.emgName = emgName;
     }
 
-    void setEmgPhone(int emgPhone) {
+    void setEmgPhone(String emgPhone) {
         this.emgPhone = emgPhone;
     }
 

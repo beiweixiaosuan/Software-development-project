@@ -26,11 +26,13 @@ class Database {
             int currentSsn = rs.getInt("ssn");
             String currentPhone = rs.getString("phone");
             String currentEmgName = rs.getString("emg_name");
-            int currentEmgPhone = rs.getInt("emg_phone");
+            String currentEmgPhone = rs.getString("emg_phone");
             int currentSalary = rs.getInt("salary");
 
             Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone, currentSalary);
             employee.display();
+
+            System.out.println("\n--- UPDATING EMPLOYEE INFORMATION ----");
 
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter new name: ");
@@ -60,7 +62,7 @@ class Database {
 
             System.out.print("Enter new emergency phone #: ");
             String emgPhoneInput = sc.nextLine();
-            int emgPhone = emgPhoneInput.isEmpty() ? employee.getEmgPhone() : Integer.parseInt(emgPhoneInput);
+            String emgPhone = emgPhoneInput.isEmpty() ? employee.getEmgPhone() : emgPhoneInput;
             employee.setEmgPhone(emgPhone);
 
             System.out.print("Enter new salary: ");
@@ -75,12 +77,12 @@ class Database {
             updateStmt.setInt(3, ssn);
             updateStmt.setString(4, phone);
             updateStmt.setString(5, emgName);
-            updateStmt.setInt(6, emgPhone);
+            updateStmt.setString(6, emgPhone);
             updateStmt.setInt(7, salary);
             updateStmt.setInt(8, employeeId);
 
             int rowsUpdated = updateStmt.executeUpdate();
-            System.out.println(rowsUpdated + " record(s) updated successfully.");
+            System.out.println("---------- " + rowsUpdated + " RECORD UPDATED ----------\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
