@@ -3,15 +3,18 @@ public class Employee {
     private String name;
     private String dob;
     private int ssn;
-    private double phone;
+    private String phone;
+    private String emgName;
+    private String emgPhone;
     private int salary;
 
-    Employee(int id, String name, String dob, int ssn, double phone, int salary) {
+    Employee(int id, String name, String dob, int ssn, String phone, String emgName, int emgPhone, int salary) {
         this.id = id;
         this.name = name;
         this.dob = dob;
         this.ssn = ssn;
         this.phone = phone;
+        this.emgName = emgName;
         this.salary = salary;
     }
 
@@ -31,8 +34,16 @@ public class Employee {
         return ssn;
     }
 
-    double getPhone() {
+    String getPhone() {
         return phone;
+    }
+
+    String getEmgName() {
+        return emgName;
+    }
+
+    String getEmgPhone() {
+        return emgPhone;
     }
 
     int getSalary() {
@@ -55,8 +66,16 @@ public class Employee {
         this.ssn = ssn;
     }
 
-    void setPhone(double phone) {
+    void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    void setEmgName(String emgName) {
+        this.emgName = emgName;
+    }
+
+    void setEmgPhone(String emgPhone) {
+        this.emgPhone = emgPhone;
     }
 
     void setSalary(int salary) {
