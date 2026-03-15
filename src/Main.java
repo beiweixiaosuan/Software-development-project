@@ -26,6 +26,8 @@ public class Main {
             System.out.println("5. Display Employees");
             System.out.println("0. Exit");
 
+            System.out.print("Option: ");
+            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             int employeeId;
 
@@ -36,14 +38,23 @@ public class Main {
                     addEmployee();
                     break;
                 case 2:
+                    System.out.println("\n--- Update Employee ---");
+                    System.out.print("Enter Employee ID: ");
+                    sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());
                     updateEmployee(employeeId);
                     break;
                 case 3:
+                    System.out.println("\n--- Delete Employee ---");
+                    System.out.print("Enter Employee ID: ");
+                    sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());
                     deleteEmployee(employeeId);
                     break;
                 case 4:
+                    System.out.println("\n--- Update Salary ---");
+                    System.out.print("Enter Employee ID: ");
+                    sc = new Scanner(System.in);
                     employeeId = Integer.parseInt(sc.nextLine());
                     updateSalary(employeeId);
                     break;
