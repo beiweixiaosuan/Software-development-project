@@ -1,22 +1,17 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class Database {
+class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/emp_db";
     private static final String USER = "root";
     private static final String PASSWORD = "password";
 
-    public static void main(String[] args) {
-        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
-             Scanner sc = new Scanner(System.in)) {
-
-            System.out.print("Enter Employee ID: ");
-            int empId = Integer.parseInt(sc.nextLine());
-
+    void updateEmployee(int employeeId) {
+        try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)) {
             // Check if employee exists
             String selectQuery = "SELECT * FROM employees WHERE empID = ?";
             PreparedStatement selectStmt = con.prepareStatement(selectQuery);
-            selectStmt.setInt(1, empId);
+            selectStmt.setInt(1, employeeId);
 
             ResultSet rs = selectStmt.executeQuery();
 
@@ -34,40 +29,44 @@ public class Database {
             int currentEmgPhone = rs.getInt("emg_phone");
             int currentSalary = rs.getInt("salary");
 
-            System.out.println("ID: " + currentId);
-            System.out.println("Name: " + currentName);
-            System.out.println("DOB: " + currentDob);
-            System.out.println("SSN: " + currentSsn);
-            System.out.println("Phone: " + currentPhone);
-            System.out.println("Salary: " + currentSalary);
+            Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone, currentSalary);
+            employee.display();
 
+            Scanner sc = new Scanner(System.in);
             System.out.print("Enter new name: ");
             String nameInput = sc.nextLine();
-            String name = nameInput.isEmpty() ? currentName : nameInput;
+            String name = nameInput.isEmpty() ? employee.getName() : nameInput;
+            employee.setName(name);
 
             System.out.print("Enter new DOB (YYYY-MM-DD): ");
             String dobInput = sc.nextLine();
-            Date dob = dobInput.isEmpty() ? currentDob : Date.valueOf(dobInput);
+            Date dob = dobInput.isEmpty() ? employee.getDob() : Date.valueOf(dobInput);
+            employee.setDob(dob);
 
             System.out.print("Enter new SSN: ");
             String ssnInput = sc.nextLine();
-            int ssn = ssnInput.isEmpty() ? currentSsn : Integer.parseInt(ssnInput);
+            int ssn = ssnInput.isEmpty() ? employee.getSsn() : Integer.parseInt(ssnInput);
+            employee.setSsn(ssn);
 
             System.out.print("Enter new phone #: ");
             String phoneInput = sc.nextLine();
-            String phone = phoneInput.isEmpty() ? currentPhone : phoneInput;
+            String phone = phoneInput.isEmpty() ? employee.getPhone() : phoneInput;
+            employee.setPhone(phone);
 
             System.out.print("Enter new emergency contact: ");
             String emgNameInput = sc.nextLine();
-            String emgName = emgNameInput.isEmpty() ? currentEmgName : emgNameInput;
+            String emgName = emgNameInput.isEmpty() ? employee.getEmgName() : emgNameInput;
+            employee.setEmgName(emgName);
 
             System.out.print("Enter new emergency phone #: ");
             String emgPhoneInput = sc.nextLine();
-            int emgPhone = emgPhoneInput.isEmpty() ? currentEmgPhone : Integer.parseInt(emgPhoneInput);
+            int emgPhone = emgPhoneInput.isEmpty() ? employee.getEmgPhone() : Integer.parseInt(emgPhoneInput);
+            employee.setEmgPhone(emgPhone);
 
             System.out.print("Enter new salary: ");
             String salaryInput = sc.nextLine();
-            int salary = salaryInput.isEmpty() ? currentSalary : Integer.parseInt(salaryInput);
+            int salary = salaryInput.isEmpty() ? employee.getSalary() : Integer.parseInt(salaryInput);
+            employee.setSalary(salary);
 
             String updateQuery = "UPDATE employees SET name = ?, dob = ?, ssn = ?, phone = ?, emg_name = ?, emg_phone = ?, salary = ? WHERE empID = ?";
             PreparedStatement updateStmt = con.prepareStatement(updateQuery);
@@ -78,7 +77,7 @@ public class Database {
             updateStmt.setString(5, emgName);
             updateStmt.setInt(6, emgPhone);
             updateStmt.setInt(7, salary);
-            updateStmt.setInt(8, empId);
+            updateStmt.setInt(8, employeeId);
 
             int rowsUpdated = updateStmt.executeUpdate();
             System.out.println(rowsUpdated + " record(s) updated successfully.");
