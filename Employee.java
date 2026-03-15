@@ -1,14 +1,16 @@
+import java.sql.Date;
+
 public class Employee {
     private int id;
     private String name;
-    private String dob;
+    private Date dob;
     private int ssn;
     private String phone;
     private String emgName;
-    private String emgPhone;
+    private int emgPhone;
     private int salary;
 
-    Employee(int id, String name, String dob, int ssn, String phone, String emgName, int emgPhone, int salary) {
+    Employee(int id, String name, Date dob, int ssn, String phone, String emgName, int emgPhone, int salary) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -26,7 +28,7 @@ public class Employee {
         return name;
     }
 
-    String getDob() {
+    Date getDob() {
         return dob;
     }
 
@@ -42,7 +44,7 @@ public class Employee {
         return emgName;
     }
 
-    String getEmgPhone() {
+    int getEmgPhone() {
         return emgPhone;
     }
 
@@ -58,7 +60,7 @@ public class Employee {
         this.name = name;
     }
 
-    void setDob(String dob) {
+    void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -74,7 +76,7 @@ public class Employee {
         this.emgName = emgName;
     }
 
-    void setEmgPhone(String emgPhone) {
+    void setEmgPhone(int emgPhone) {
         this.emgPhone = emgPhone;
     }
 
