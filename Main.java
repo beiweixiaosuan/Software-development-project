@@ -6,13 +6,13 @@ public class Main {
 
     static void addEmployee() {}
 
-    static void updateEmployee() {
-        database.updateEmployee(1);
+    static void updateEmployee(int employeeId) {
+        database.updateEmployee(employeeId);
     }
 
-    static void deleteEmployee() {}
+    static void deleteEmployee(int employeeId) {}
 
-    static void updateSalary() {}
+    static void updateSalary(int employeeId) {}
 
     static void displayEmployees() {}
 
@@ -27,25 +27,29 @@ public class Main {
             System.out.println("0. Exit");
 
             int choice = sc.nextInt();
+            int employeeId;
 
             switch (choice) {
+                case 0:
+                    System.exit(0);
                 case 1:
                     addEmployee();
                     break;
                 case 2:
-                    updateEmployee();
+                    employeeId = Integer.parseInt(sc.nextLine());
+                    updateEmployee(employeeId);
                     break;
                 case 3:
-                    deleteEmployee();
+                    employeeId = Integer.parseInt(sc.nextLine());
+                    deleteEmployee(employeeId);
                     break;
                 case 4:
-                    updateSalary();
+                    employeeId = Integer.parseInt(sc.nextLine());
+                    updateSalary(employeeId);
                     break;
                 case 5:
                     displayEmployees();
                     break;
-                case 0:
-                    System.exit(0);
                 default:
                     System.out.println("Invalid choice");
             }
