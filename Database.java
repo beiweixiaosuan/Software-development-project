@@ -27,9 +27,8 @@ class Database {
             String currentPhone = rs.getString("phone");
             String currentEmgName = rs.getString("emg_name");
             String currentEmgPhone = rs.getString("emg_phone");
-            int currentSalary = rs.getInt("salary");
 
-            Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone, currentSalary);
+            Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone);
             employee.display();
 
             System.out.println("\n--- UPDATING EMPLOYEE INFORMATION ----");
@@ -65,12 +64,7 @@ class Database {
             String emgPhone = emgPhoneInput.isEmpty() ? employee.getEmgPhone() : emgPhoneInput;
             employee.setEmgPhone(emgPhone);
 
-            System.out.print("Enter new salary: ");
-            String salaryInput = sc.nextLine();
-            int salary = salaryInput.isEmpty() ? employee.getSalary() : Integer.parseInt(salaryInput);
-            employee.setSalary(salary);
-
-            String updateQuery = "UPDATE employees SET name = ?, dob = ?, ssn = ?, phone = ?, emg_name = ?, emg_phone = ?, salary = ? WHERE empID = ?";
+            String updateQuery = "UPDATE employees SET name = ?, dob = ?, ssn = ?, phone = ?, emg_name = ?, emg_phone = ? WHERE empID = ?";
             PreparedStatement updateStmt = con.prepareStatement(updateQuery);
             updateStmt.setString(1, name);
             updateStmt.setDate(2, dob);
@@ -78,8 +72,7 @@ class Database {
             updateStmt.setString(4, phone);
             updateStmt.setString(5, emgName);
             updateStmt.setString(6, emgPhone);
-            updateStmt.setInt(7, salary);
-            updateStmt.setInt(8, employeeId);
+            updateStmt.setInt(7, employeeId);
 
             int rowsUpdated = updateStmt.executeUpdate();
             System.out.println("---------- " + rowsUpdated + " RECORD UPDATED ----------\n");

@@ -10,7 +10,7 @@ class Employee {
     private String emgPhone;
     private int salary;
 
-    Employee(int id, String name, Date dob, int ssn, String phone, String emgName, String emgPhone, int salary) {
+    Employee(int id, String name, Date dob, int ssn, String phone, String emgName, String emgPhone) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -18,7 +18,6 @@ class Employee {
         this.phone = phone;
         this.emgName = emgName;
         this.emgPhone = emgPhone;
-        this.salary = salary;
     }
 
     int getId() {
