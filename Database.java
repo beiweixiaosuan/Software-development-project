@@ -27,8 +27,9 @@ class Database {
             String currentPhone = rs.getString("phone");
             String currentEmgName = rs.getString("emg_name");
             String currentEmgPhone = rs.getString("emg_phone");
+            int currentSalary = rs.getInt("salary");
 
-            Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone);
+            Employee employee = new Employee(currentId, currentName, currentDob, currentSsn, currentPhone, currentEmgName, currentEmgPhone, currentSalary);
             employee.display();
 
             System.out.println("\n--- UPDATING EMPLOYEE INFORMATION ----");
